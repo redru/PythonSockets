@@ -1,8 +1,12 @@
 # Client program
+import os
 import socket
 import sys
 from sys import stdin
 from sys import stdout
+
+cwd = os.getcwd()
+sys.path.append(cwd)
 
 if len(sys.argv) < 4:
     print "[ERROR] Missing parameters. Expected 3 but got", (len(sys.argv) - 1)
@@ -17,6 +21,15 @@ print 'Connected to', HOST, ':', PORT
 
 filepath = sys.argv[3]
 input_file = open(filepath, 'rb')
+input_file_size = os.path.getsize(filepath)
+input_file_name = str.split(filepath, "/")
+input_file_name = input_file_name[len(input_file_name) - 1]
+meta_data = str(input_file_size) + "|" + input_file_name + "|"
+
+while len(meta_data) < 256:
+    meta_data += "."
+
+soc.send(meta_data)
 
 readcount = 0
 
@@ -27,7 +40,6 @@ while 1:
     stdout.write("\rRead[" + str(readcount) + " bytes]")
     stdout.flush()
     soc.send(data)
-    # soc.recv(4096)
 
 print "Sent file:", filepath
 soc.close()
