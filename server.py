@@ -1,13 +1,24 @@
-# Echo server program
 import os
 import socket
 import sys
 from sys import stdout
 from datetime import datetime
 
-HOST = ""                 # Symbolic name meaning all available interfaces
-PORT = 50025              # Arbitrary non-privileged port
-DOWNLOAD_DIR = "downloads"
+from libs.parser import Parser
+
+if len(sys.argv) > 1:
+    sys.argv = Parser.parseCommandLineArguments(sys.argv[1:])
+    print "Command line arguments -> " + str(sys.argv)
+
+HOST = sys.argv["address"] if "address" in sys.argv else ""
+PORT = int(sys.argv["port"]) if "port" in sys.argv else 50025
+DOWNLOAD_DIR = sys.argv["downloadDir"] if "downloadDir" in sys.argv else "downloads"
+
+if not os.path.exists(DOWNLOAD_DIR):
+    os.makedirs(DOWNLOAD_DIR)
+    print "Created download dir -> " + DOWNLOAD_DIR
+
+print "Set download directory -> " + DOWNLOAD_DIR
 
 def writeToFileConnectionData(connection, filename):
     file = open(filename, "ab")
@@ -26,15 +37,10 @@ def writeToFileConnectionData(connection, filename):
     file.close()
     print "File closed:", filename
 
-def createDownloadDir(path):
-    if not os.path.exists(path):
-        os.makedirs(path)
-
-createDownloadDir(DOWNLOAD_DIR)
-
 soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 soc.bind((HOST, PORT))
 soc.listen(5)
+print "Listening at " + HOST + ":" + str(PORT)
 
 while 1:
     conn, addr = soc.accept()
