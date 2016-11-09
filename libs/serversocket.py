@@ -38,7 +38,7 @@ class Server:
 
         # Open file
         file = open(filedir, "ab")
-        print "File opened:", filedir
+        print "File created ->", filedir
 
         received = 0
         while 1:
@@ -56,7 +56,7 @@ class Server:
 
         # When finished reading and writing, close file
         file.close()
-        print "\nFile closed:", filedir
+        print "\nFile closed ->", filedir
 
 
 class ServerSocket:

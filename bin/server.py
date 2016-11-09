@@ -4,7 +4,6 @@ import sys
 # Add libs path to runtime and import libs
 cwd = os.getcwd()
 sys.path.append(cwd)
-from libs.parser import Parser
 from libs.utils import JsonConf
 from libs.utils import Fs
 from libs.serversocket import Server

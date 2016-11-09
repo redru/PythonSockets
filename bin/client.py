@@ -7,19 +7,25 @@ from sys import stdout
 
 cwd = os.getcwd()
 sys.path.append(cwd)
+from libs.utils import JsonConf
+from libs.parser import Parser
 
-if len(sys.argv) < 4:
-    print "[ERROR] Missing parameters. Expected 3 but got", (len(sys.argv) - 1)
-    sys.exit(1)
+# Load configuration data
+if len(sys.argv) == 3:
+    friends = JsonConf(cwd + '/conf/friends.json')
+    conn_data = friends.get(sys.argv[2])
 
-HOST = sys.argv[1]
-PORT = int(sys.argv[2])
+if len(sys.argv) == 4:
+    params = Parser.parseCommandLineArguments(sys.argv[1:])
+    conn_data = { "address": params["address"], "port": params["port"] }
+
+# Set file path to transfer
+filepath = sys.argv[1]
 
 soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-soc.connect((HOST, PORT))
-print 'Connected to', HOST, ':', PORT
+soc.connect((conn_data["address"], int(conn_data["port"])))
+print "Connected to " + conn_data["address"] + ':' + str(conn_data["port"])
 
-filepath = sys.argv[3]
 input_file = open(filepath, 'rb')
 input_file_size = os.path.getsize(filepath)
 input_file_name = str.split(filepath, "/")
