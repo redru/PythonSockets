@@ -21,8 +21,8 @@ class Fs:
     @staticmethod
     def createIfNotExists(path):
         if not os.path.exists(path):
-            os.makedirs(serverconf.get("downloadDir"))
-            print "Created dir -> " + serverconf.get("downloadDir")
+            os.makedirs(path)
+            print "Created dir -> " + path
 
     @staticmethod
     def appendNumberIfExists(path, count=0):

@@ -2,22 +2,23 @@
 import os
 import socket
 import sys
-from sys import stdin
 from sys import stdout
 
-cwd = os.getcwd()
-sys.path.append(cwd)
+CWD = os.getcwd()
+sys.path.append(CWD)
 from libs.utils import JsonConf
 from libs.parser import Parser
 
 # Load configuration data
 if len(sys.argv) == 3:
-    friends = JsonConf(cwd + '/conf/friends.json')
+    print "Loading " + CWD + "/conf/friends.json" + " configuration"
+    friends = JsonConf(CWD + "/conf/friends.json")
     conn_data = friends.get(sys.argv[2])
 
 if len(sys.argv) == 4:
+    print "Loading friends.json configuration"
     params = Parser.parseCommandLineArguments(sys.argv[1:])
-    conn_data = { "address": params["address"], "port": params["port"] }
+    conn_data = {"address": params["address"], "port": params["port"]}
 
 # Set file path to transfer
 filepath = sys.argv[1]
