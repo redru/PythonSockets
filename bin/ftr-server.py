@@ -10,6 +10,7 @@ from libs.serversocket import Server
 
 # Load configuration data
 serverconf = JsonConf(cwd + '/conf/server_conf.json')
+serverconf.load()
 
 # Create download directory if not exists
 Fs.createIfNotExists(serverconf.get("downloadDir"))
