@@ -2,18 +2,43 @@ import json
 import os
 
 class JsonConf:
-    __conf = None
+    filepath = ""
 
     def __init__(self, filepath):
         if filepath:
-            self.load(filepath)
+            self.filepath = filepath
 
-    def load(self, filepath):
-        with open(filepath) as data_file:    
+    def load(self):
+        print "Opening: " + self.filepath
+        with open(self.filepath) as data_file:    
             self.__conf = json.load(data_file)
     
     def get(self, attr):
         return self.__conf[attr] if attr in self.__conf else ""
+
+    def getList(self):
+        attrlist = []
+        for attr in self.__conf:
+            attrlist.append(attr)
+
+        return attrlist
+
+    def add(self):
+        key = raw_input("Name: ")
+        address = raw_input("Address: ")
+        port = input("Port: ")
+
+        if key not in self.__conf:
+            self.__conf[key] = {"address": address, "port": port}
+
+        open(self.filepath, 'wb').write(json.dumps(self.__conf))
+        print "Correctly added a new friend: " + key + "@" + address + ":" + str(port)
+
+    def modify(self):
+        return
+
+    def remove(self):
+        return
 
 
 class Fs:

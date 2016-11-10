@@ -6,9 +6,6 @@ ACTION="$1"
 FILE="$2"
 TARGET="$3"
 
-# Data for configuration
-USER="$2"
-
 if [ "$ACTION" == "startup" ]
     then python bin/ftr-server.py
 fi
@@ -18,5 +15,5 @@ if [ "$ACTION" == "send" ]
 fi
 
 if [ "$ACTION" == "conf" ]
-    then python bin/conf.py
+    then python bin/ftr-conf.py
 fi

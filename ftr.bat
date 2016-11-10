@@ -7,3 +7,7 @@ IF "%ACTION%"=="startup" (
 IF "%ACTION%"=="send" IF NOT [%2]==[] IF NOT [%3]==[] (
     python bin/ftr-cli.py %2 %3
 )
+
+IF "%ACTION%"=="conf" (
+    python bin/ftr-conf.py
+)
