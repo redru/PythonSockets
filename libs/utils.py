@@ -9,7 +9,6 @@ class JsonConf:
             self.filepath = filepath
 
     def load(self):
-        print "Opening: " + self.filepath
         with open(self.filepath) as data_file:    
             self.__conf = json.load(data_file)
     
@@ -38,7 +37,12 @@ class JsonConf:
         return
 
     def remove(self):
-        return
+        key = raw_input("REMOVE: ")
+        if key in self.__conf:
+            del self.__conf[key]
+            open(self.filepath, 'wb').write(json.dumps(self.__conf))
+        else:
+            print "Key \"" + key + "\" was not found in friends list"
 
 
 class Fs:
