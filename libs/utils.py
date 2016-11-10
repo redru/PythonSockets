@@ -33,3 +33,13 @@ class Fs:
                 return path + "_" + str(count)
         
         return path
+
+class File():
+
+    def __init__(self, path, mode):
+        self.path = path
+        self.stream = open(path, mode)
+        self.size = os.path.getsize(path)
+
+        splittedurl = str.split(path, "/")
+        self.name = splittedurl[len(splittedurl) - 1]
