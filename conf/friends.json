@@ -1,1 +1,1 @@
-{"prova": {"port": 30000, "address": "192.168.1.40"}, "fadsds": {"port": 5345, "address": "192.168.1.5"}, "tyytyt": {"port": 4243, "address": "rreger"}, "luca": {"port": 30000, "address": "127.0.0.1"}, "alessandra": {"port": 30000, "address": "192.168.1.2"}, "alessio": {"port": 30000, "address": "192.168.1.1"}}
+{"MOCK": {"port": "INT_PORT", "address": "ADDRESS"}}

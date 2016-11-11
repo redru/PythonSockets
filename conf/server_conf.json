@@ -1,5 +1,5 @@
 {
-    "address": "",
-    "port": 30000,
-    "downloadDir": "/home/redru/Downloads"
+    "address": "ADDRESS",
+    "port": "INT_PORT",
+    "downloadDir": "LOCAL_DOWNLOAD_DIR_FULL_PATH"
 }
