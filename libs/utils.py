@@ -23,15 +23,18 @@ class JsonConf:
         return attrlist
 
     def add(self):
-        key = raw_input("Name: ")
-        address = raw_input("Address: ")
-        port = input("Port: ")
+        try:
+            key = raw_input("Name: ")
+            address = raw_input("Address: ")
+            port = int(raw_input("Port: "))
 
-        if key not in self.__conf:
-            self.__conf[key] = {"address": address, "port": port}
+            if key not in self.__conf:
+                self.__conf[key] = {"address": address, "port": port}
 
-        open(self.filepath, 'wb').write(json.dumps(self.__conf))
-        print "Correctly added a new friend: " + key + "@" + address + ":" + str(port)
+            open(self.filepath, 'wb').write(json.dumps(self.__conf))
+            print "Correctly added a new friend: " + key + "@" + address + ":" + str(port)
+        except ValueError:
+            print "Port must be a number. Friend was not saved."
 
     def modify(self):
         return
@@ -46,7 +49,6 @@ class JsonConf:
 
 
 class Fs:
-
     @staticmethod
     def createIfNotExists(path):
         if not os.path.exists(path):
@@ -62,9 +64,9 @@ class Fs:
                 return path + "_" + str(count)
         
         return path
+        
 
 class File():
-
     def __init__(self, path, mode):
         self.path = path
         self.stream = open(path, mode)
