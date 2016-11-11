@@ -64,7 +64,7 @@ class Fs:
                 return path + "_" + str(count)
         
         return path
-        
+
 
 class File():
     def __init__(self, path, mode):
@@ -74,3 +74,4 @@ class File():
 
         splittedurl = str.split(path, "/")
         self.name = splittedurl[len(splittedurl) - 1]
+
