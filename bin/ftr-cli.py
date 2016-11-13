@@ -2,17 +2,19 @@
 import os
 import sys
 
-CWD = os.getcwd()
-sys.path.append(CWD)
 from libs.utils import JsonConf
 from libs.utils import File
 from libs.parser import Parser
 from libs.clientsocket import ClientSocket
 
+
+CWD = os.getcwd()
+
 # Load configuration data
 if len(sys.argv) == 3:
     print ("Loading " + CWD + "/conf/friends.json" + " configuration")
     friends = JsonConf(CWD + "/conf/friends.json")
+    friends.load()
     conn_data = friends.get(sys.argv[2])
 
 if len(sys.argv) == 4:

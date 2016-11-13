@@ -32,7 +32,7 @@ class ClientSocket:
         while len(metadata) < 256:
             metadata += "."
 
-        self.soc.send(metadata)
+        self.soc.send(bytearray(metadata, "utf8"))
 
     def close(self):
         self.soc.close()

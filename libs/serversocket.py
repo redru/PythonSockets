@@ -19,10 +19,10 @@ class Server:
     def start(self):
         while 1:
             self.conn, addr = self.serversoc.accept()
-            print ("Connected by: " + addr)
+            print ("Connected by: " + str(addr))
             self.readFromConnectionToFile()
             self.conn.close()
-            print ("Coonection closed: " + addr)
+            print ("Coonection closed: " + str(addr))
 
     def write(self):
         return
@@ -30,7 +30,7 @@ class Server:
     def readFromConnectionToFile(self):
         # Retrieve metadata
         data = self.conn.recv(256)
-        data = str.split(data, "|")
+        data = str.split(str(data, "utf8"), "|")
 
         # Set file directory and file name
         filedir = self.downloaddir + "/" + data[1]
