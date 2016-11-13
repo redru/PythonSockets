@@ -6,8 +6,10 @@ from libs.utils import JsonConf
 from libs.utils import Fs
 from libs.serversocket import Server
 
+CWD = os.getcwd()
+
 # Load configuration data
-serverconf = JsonConf(cwd + '/conf/server_conf.json')
+serverconf = JsonConf(CWD + '/conf/server_conf.json')
 serverconf.load()
 
 # Create download directory if not exists

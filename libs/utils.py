@@ -31,8 +31,9 @@ class JsonConf:
             if key not in self.__conf:
                 self.__conf[key] = {"address": address, "port": port}
 
-            open(self.filepath, 'wb').write(json.dumps(self.__conf))
-            print ("Correctly added a new friend: " + key + "@" + address + ":" + str(port))
+            with open(self.filepath, 'wb') as outfile:
+                outfile.write(bytearray(json.dumps(self.__conf), "utf8"))
+                print ("Correctly added a new friend: " + key + "@" + address + ":" + str(port))
         except ValueError:
             print ("Port must be a number. Friend was not saved.")
 
@@ -43,7 +44,8 @@ class JsonConf:
         key = input("REMOVE: ")
         if key in self.__conf:
             del self.__conf[key]
-            open(self.filepath, 'wb').write(json.dumps(self.__conf))
+            with open(self.filepath, 'wb') as outfile:
+                outfile.write(bytearray(json.dumps(self.__conf), "utf8"))
         else:
             print ("Key \"" + key + "\" was not found in friends list")
 
