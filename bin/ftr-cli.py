@@ -11,12 +11,12 @@ from libs.clientsocket import ClientSocket
 
 # Load configuration data
 if len(sys.argv) == 3:
-    print "Loading " + CWD + "/conf/friends.json" + " configuration"
+    print ("Loading " + CWD + "/conf/friends.json" + " configuration")
     friends = JsonConf(CWD + "/conf/friends.json")
     conn_data = friends.get(sys.argv[2])
 
 if len(sys.argv) == 4:
-    print "Loading friends.json configuration"
+    print ("Loading friends.json configuration")
     params = Parser.parseCommandLineArguments(sys.argv[1:])
     conn_data = {"address": params["address"], "port": params["port"]}
 
@@ -27,5 +27,5 @@ inputfile = File(sys.argv[1], 'rb')
 conn.writeMetadata(str(inputfile.size) + "|" + inputfile.name + "|")
 conn.writeFile(inputfile, 4096000)
 
-print "Sent file:", inputfile.path
+print ("Sent file: " + inputfile.path)
 conn.close()

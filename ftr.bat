@@ -1,3 +1,4 @@
+SET PYTHONPATH="libs"
 SET ACTION=%1
 
 IF "%ACTION%"=="startup" (

@@ -10,7 +10,7 @@ class ClientSocket:
     def connect(self):
         self.soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.soc.connect((self.address, self.port))
-        print "Connected to " + self.address + ':' + str(self.port)
+        print ("Connected to " + self.address + ':' + str(self.port))
 
     def write(self, data):
         self.soc.send(data)
@@ -26,7 +26,7 @@ class ClientSocket:
             stdout.flush()
             self.write(data)
 
-        print ""
+        print ("")
 
     def writeMetadata(self, metadata):
         while len(metadata) < 256:

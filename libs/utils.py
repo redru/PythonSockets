@@ -24,28 +24,28 @@ class JsonConf:
 
     def add(self):
         try:
-            key = raw_input("Name: ")
-            address = raw_input("Address: ")
-            port = int(raw_input("Port: "))
+            key = input("Name: ")
+            address = input("Address: ")
+            port = int(input("Port: "))
 
             if key not in self.__conf:
                 self.__conf[key] = {"address": address, "port": port}
 
             open(self.filepath, 'wb').write(json.dumps(self.__conf))
-            print "Correctly added a new friend: " + key + "@" + address + ":" + str(port)
+            print ("Correctly added a new friend: " + key + "@" + address + ":" + str(port))
         except ValueError:
-            print "Port must be a number. Friend was not saved."
+            print ("Port must be a number. Friend was not saved.")
 
     def modify(self):
         return
 
     def remove(self):
-        key = raw_input("REMOVE: ")
+        key = input("REMOVE: ")
         if key in self.__conf:
             del self.__conf[key]
             open(self.filepath, 'wb').write(json.dumps(self.__conf))
         else:
-            print "Key \"" + key + "\" was not found in friends list"
+            print ("Key \"" + key + "\" was not found in friends list")
 
 
 class Fs:
@@ -53,7 +53,7 @@ class Fs:
     def createIfNotExists(path):
         if not os.path.exists(path):
             os.makedirs(path)
-            print "Created dir -> " + path
+            print ("Created dir -> " + path)
 
     @staticmethod
     def appendNumberIfExists(path, count=0):

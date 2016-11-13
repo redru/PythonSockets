@@ -13,16 +13,16 @@ class Server:
         self.serversoc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.serversoc.bind((self.address, self.port))
         self.serversoc.listen(5)
-        print "Set download directory -> " + self.downloaddir
-        print "Waiting for connections at " + self.address + ":" + str(self.port)
+        print ("Set download directory -> " + self.downloaddir)
+        print ("Waiting for connections at " + self.address + ":" + str(self.port))
 
     def start(self):
         while 1:
             self.conn, addr = self.serversoc.accept()
-            print "Connected by:", addr
+            print ("Connected by: " + addr)
             self.readFromConnectionToFile()
             self.conn.close()
-            print "Coonection closed:", addr
+            print ("Coonection closed: " + addr)
 
     def write(self):
         return
@@ -38,7 +38,7 @@ class Server:
 
         # Open file
         file = open(filedir, "ab")
-        print "File created ->", filedir
+        print ("File created -> " + filedir)
 
         received = 0
         while 1:
@@ -56,7 +56,7 @@ class Server:
 
         # When finished reading and writing, close file
         file.close()
-        print "\nFile closed ->", filedir
+        print ("\nFile closed -> " + filedir)
 
 
 class ServerSocket:
